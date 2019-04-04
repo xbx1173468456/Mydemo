@@ -1,0 +1,101 @@
+const express = require("express");
+const mysql = require("mysql");
+// const session = require("express-session");
+const bodyParser = require("body-parser")
+const cors = require("cors");
+var pool = mysql.createPool({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "hugh",
+    // connectionLimit: 20
+});
+var app = express();
+// app.use(cors({
+//     origin: ["192.168.1.4:8080", ],
+//     credentials: true,
+//     methods: ['GET', 'POST'],
+//     alloweHeaders: ['Conten-Type', 'Authorization']
+// }));
+app.use(cors({
+    origin: ["http://127.0.0.1:8080",
+        "http://localhost:8080",
+        "http://127.0.0.1:8081"
+    ],
+    credentials: true
+}));
+app.use(express.static("public"));
+app.listen(3000);
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// app.use(session({
+//     secret: "随机字符串",
+//     cookie: { maxAge: 60 * 1000 * 30 }, //过期时间ms
+//     resave: false,
+//     saveUninitialized: true
+// }));
+
+//功能1：登录
+app.get('/login', (req, res) => {
+    var u = req.query.uname;
+    var p = req.query.upwd;
+    var sql = "SELECT nid FROM hugh_login WHERE uname=? AND upwd=md5(?)";
+    pool.query(sql, [u, p], (err, result) => {
+        if (err) throw err;
+        console.log(result);
+        if (result.length == 0) {
+            res.send({ code: -1, msg: "用户名或密码有误" })
+        } else {
+            res.send({ code: 1, msg: "登录成功" });
+        }
+    })
+})
+//功能2，注册
+app.post('/appReg',(req,res)=>{
+    var uname=req.body.uname;
+    var upwd=req.body.upwd;
+    console.log(uname);
+    console.log(upwd);
+    var sql="INSERT INTO hugh_login VALUES(?,?,md5(?))";
+    pool.query(sql,[null,uname,upwd],(err,result)=>{
+        if(err) throw err;
+        res.send({code:1,data:result,msg:"注册成功"});
+    })
+});
+// 3 精品课程
+app.get('/appClass',(req,res)=>{
+    var msg=req.query.heade_msg;
+    var sql="SELECT heade_msg FROM hugh_tk";
+    pool.query(sql,msg,(err,result)=>{
+        if(err) throw err;
+        res.send({code:1,data:result});
+    })
+});
+// 4 nav课程
+app.get('/navclass',(req,res)=>{
+    var sql="SELECT heade_msg,img_url FROM hugh_class";
+    pool.query(sql,(err,result)=>{
+        if(err) throw err;
+        res.send({code:1,data:result})
+    })
+});
+// 5 师资力量
+app.get('/navsznl',(req,res)=>{
+    var sql="SELECT heade_msg,img_url FROM hugh_sznl";
+    pool.query(sql,(err,result)=>{
+        if(err) throw err;
+        res.send({code:1,data:result})
+    })
+<<<<<<< HEAD
+=======
+});
+//6 训练中心
+app.get('/Rlzx',(req,res)=>{
+    var sql="SELECT img_url,xl_msg,xl_jixun FROM hugh_jixun";
+    pool.query(sql,(err,result)=>{
+        if(err) throw err;
+        res.send({code:1,data:result});
+    })
+>>>>>>> 4.4pm
+});

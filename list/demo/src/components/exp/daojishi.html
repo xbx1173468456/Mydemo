@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="time"></div>
+    <script>
+        function restTime() {
+            var msg = document.getElementById("time");
+            var setTime = new Date("2019/6/7 00:00:00");
+            var nowTime = new Date();
+            var restSec = setTime.getTime() - nowTime.getTime();
+            var day = parseInt(restSec / (60 * 60 * 24 * 1000));
+            var hour = parseInt(restSec / (60 * 60 * 1000) % 24);
+            var minu = parseInt(restSec / (60 * 1000) % 60);
+            var sec = parseInt(restSec / 1000 % 60);
+            var str = "距离高考结束还有" + day + "天" + hour + "时" + minu + "分" + sec + "秒";
+            console.log(str);
+            msg.innerHTML = str;
+            setTimeout(restTime, 1000);
+        };
+        restTime();
+    </script>
+</body>
+
+</html>

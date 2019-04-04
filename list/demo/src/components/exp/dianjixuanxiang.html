@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./js/vue.js"></script>    
+</head>
+<body>
+  <div id="app">
+    <span>{{num}}</span>
+    <div>
+      <span @click="jump">请选择</span>
+      <a @click="jump" v-for="(item,i) of msg" href="javascript:;">{{item}}</a>
+    </div>
+  </div>
+  <script>
+    var vm=new Vue({
+      el:"#app",
+      data:{
+        num:"请选择",
+        msg:["高一","高二","高三"]
+      },
+      methods:{}
+    });
+  </script>
+</body>
+</html>
