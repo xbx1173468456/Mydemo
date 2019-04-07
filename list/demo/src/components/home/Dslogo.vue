@@ -6,15 +6,12 @@
                 </a>
             </div>
             <div class="ds_logo-right">
-                <div class="logo-tu1">
-                    <div class="logo-tu2"></div>
-                </div>
+                <i class="iconfont icon-lsousuo log-sou"></i>
                 <a class="ds_logo-a" href="javascript:;">搜索</a>
                 <input class="ds_logo-input" type="text" placeholder="请输入关键字">
                 <div class="ds_logo_sx">
                     <div class="ds_logo_sx1"></div>
                 </div>
-                <!-- <div class="ds_logo_rc"> -->
                 <ul class="clear">
                     <li class="right-kc">
                         <span class="ds_logo_rc">热门搜索词:</span>
@@ -45,6 +42,14 @@ export default {
 }
 </script>
 <style>
+.log-sou{
+    font-size: 25px;
+    font-weight: 900;
+    color: #bbb;
+    position:absolute;
+    left: 30px;
+    top:12px;
+}
 .ds_logo_rc{
     margin-left:30px; 
 }
@@ -95,6 +100,7 @@ export default {
     float: right;
     box-sizing: border-box;
     width: 535px;
+    position: relative;
 }
 
 .ds_logo-input,

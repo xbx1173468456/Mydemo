@@ -1,50 +1,28 @@
 <template>
   <div id="app">
-    <Header/>
-    <Dslogo/>
-    <Headnav/>
-    <Rmkc/>
-    <Lunbo/>
-    <Dsxunlian/>
-    <Rdgz/>
     <router-view/>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+    <Footer/>
   </div>
 </template>
 
 <script>
-import Header from './components/home/Header.vue'
-import Dslogo from './components/home/Dslogo.vue'
-import Headnav from './components/home/Headnav.vue'
-import Rmkc from './components/home/Rmkc.vue'
-import Lunbo from './components/home/Lunbo.vue'
-import Dsxunlian from './components/home/Dsxunlian.vue'
-import Rdgz from './components/home/Rdgz.vue'
+import Footer from './components/home/Footer.vue'
 
 export default {
   name: 'app',
   components: {
-    Rmkc,
-    Header,
-    Dslogo,
-    Headnav,
-    Lunbo,
-    Dsxunlian,
-    Rdgz
-  }
+    Footer
+  },
+  data(){
+    return{
+    
+    }
+  },
 }
 </script>
 
 <style>
-@import './assets/icon.css';
-/* @import './assets/min_search.css'; */
+@import './assets/iconfont.css';
 a,ul,img,input,select{
     list-style: none;
     text-decoration: none;

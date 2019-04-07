@@ -8,19 +8,12 @@ var pool = mysql.createPool({
     user: "root",
     password: "",
     database: "hugh",
-    // connectionLimit: 20
 });
 var app = express();
-// app.use(cors({
-//     origin: ["192.168.1.4:8080", ],
-//     credentials: true,
-//     methods: ['GET', 'POST'],
-//     alloweHeaders: ['Conten-Type', 'Authorization']
-// }));
 app.use(cors({
     origin: ["http://127.0.0.1:8080",
         "http://localhost:8080",
-        "http://127.0.0.1:8081"
+        "http://192.168.1.4:8080"
     ],
     credentials: true
 }));
@@ -87,15 +80,29 @@ app.get('/navsznl',(req,res)=>{
         if(err) throw err;
         res.send({code:1,data:result})
     })
-<<<<<<< HEAD
-=======
+
 });
 //6 训练中心
-app.get('/Rlzx',(req,res)=>{
+app.get('/dslian',(req,res)=>{
     var sql="SELECT img_url,xl_msg,xl_jixun FROM hugh_jixun";
     pool.query(sql,(err,result)=>{
         if(err) throw err;
         res.send({code:1,data:result});
     })
->>>>>>> 4.4pm
+});
+// 教师团队
+app.get('/jstd',(req,res)=>{
+    var sql="SELECT img_url,msg,jname FROM hugh_jstd";
+    pool.query(sql,(err,result)=>{
+        if(err) throw err;
+        res.send({code:1,data:result});
+    })
+});
+//学子合影
+app.get('/xzhy',(req,res)=>{
+    let sql="SELECT img_url FROM hugh_xzhy";
+    pool.query(sql,(err,result)=>{
+    if(err) throw err;
+    res.send({code:1,data:result});
+    })
 });

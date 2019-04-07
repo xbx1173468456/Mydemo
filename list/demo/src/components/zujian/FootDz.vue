@@ -1,5 +1,5 @@
 <template>
-    <a href="javascript:;">锦华万达</a>
+    <a href="javascript:;"></a>
 </template>
 <script>
 export default {

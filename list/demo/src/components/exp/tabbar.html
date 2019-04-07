@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+  body{
+      background-color: #eee;
+    }
+.js-fl{
+  font-size: 16px;
+  padding-right: 15px;
+  cursor: pointer;
+}
+.ds_js-js {
+    width: 271px;
+    text-align: center;
+    left: 0px;
+    border: 1px solid #ddd;
+}
+.ds_js-js>img {
+    width: 245px;
+}
+
+.ds_js-js span {
+    display: block;
+    padding: 20px 0 10px 0;
+    color: #5291ef;
+    font-size: 18px;
+    font-weight: 500;
+}
+.ds_js-js p {
+    font-size: 12px;
+    color: #888;
+    line-height: 23px;
+    width: 211px;
+    padding:0px 30px;
+    margin-top: 0px;
+}
+
+.ds_js-js a:last-child{
+    text-decoration: none;
+    display: inline-block;
+    border: 1px solid #999;
+    color: #999;
+    border-radius: 3px;
+    width: 70px;
+    padding: 5px;
+    font-size: 12px;
+    margin: 0px 87px 20px;
+}
+.app{
+  width: 1150px;
+  margin: 0 auto;
+  padding: 25px;
+  background-color: #fff;
+}
+.js-js{
+  display: flex;
+  list-style: none;
+  justify-content: space-between;
+  padding-left: 0px;
+  margin-top: 15px;
+}
+.active{
+  color: #5291ef;
+}
+  </style>
+  <script src="./js/vue.js"></script>
+</head>
+<body>  
+  <div class="app">
+    <div class="ds_js">
+      <span @click="classTab(index)" v-for="(cla,index) of clas" class="js-fl" :class="{active:index==nowIndex}">{{cla}}</span>
+    </div>
+    <ul class="js-js" v-show="nowIndex==0">
+      <li v-for="(img,i) of imgs1" class="ds_js-js active">
+        <a href="javascript:;"><img :src=img></a>
+        <span>周戎老师</span>
+        <p>具备深厚的文学功底，尤其擅长古诗文阅读与写作版块的教 学。爱岗...</p>
+        <a href="javascript:;">更多介绍</a>
+      </li>  
+    </ul>
+    <ul class="js-js" v-show="nowIndex==1">
+        <li v-for="(img2,i) of imgs2" class="ds_js-js active">
+          <a href="javascript:;"><img :src=img2></a>
+          <span>周戎老师</span>
+          <p>具备深厚的文学功底，尤其擅长古诗文阅读与写作版块的教 学。爱岗...</p>
+          <a href="javascript:;">更多介绍</a>
+      </li>  
+    </ul>  
+  </div>
+  <script>
+    var vm=new Vue({
+      el:".app",
+      data:{
+        clas:["全部","语文"],
+        imgs1:["daishi/104.png","daishi/102.png","daishi/100.png","daishi/98.png"],
+        imgs2:["daishi/72.png","daishi/82.png","daishi/86.png","daishi/88.png"],
+        nowIndex:0,
+      },
+      methods:{
+        classTab(index){
+            this.nowIndex=index;
+        }
+      }
+    })
+  </script>   
+</body>
+</html>

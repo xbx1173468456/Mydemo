@@ -1,13 +1,13 @@
 <template>
-  <!-- 戴氏训练中心 -->
+  <!-- 优氏训练中心 -->
   <div class="ds_xl">
-    <span class="xl-heade">戴氏训练中心</span>
-    <ul class="xl-tu">
-      <li>
+    <span class="xl-heade">优氏训练中心</span>
+    <ul class="xl-tu clear">
+      <li class="xl-item" v-for="(item,i) of xl" :key="i">
         <a class="ds-opacity" href="javascript:;">
-          <img src="http://127.0.0.1:3000/img/344.jpg" />
-          <span>【高考集训】</span>
-          <p>全托/封闭式/考点精讲训练</p>
+          <img :src="item.img_url" />
+          <span>{{item.xl_msg}}</span>
+          <p>{{item.xl_jixun}}</p>
         </a>
       </li>
     </ul>
@@ -15,17 +15,31 @@
 </template>
 <script>
 export default {
+  props:["xl"],
   data(){
-    return{}
+    return{
+    }
+  },
+  created(){
+  },
+  methods:{
+ 
   }
 }
 </script>
 <style>
+.xl-item+li{
+  margin-left: 38px;
+}
+.xl-item{
+  float: left;
+  box-sizing: border-box;
+}
 .xl-tu p{
   color: #888;
   font-size: 13px;
   text-align: left;
-  margin-bottom: 15px; 
+  margin-bottom: 15px;
 }
 .xl-tu span{
   text-align: left;

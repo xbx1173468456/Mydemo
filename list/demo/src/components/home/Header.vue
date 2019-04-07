@@ -21,6 +21,7 @@
                 <p class="header_rx1">028-66000189</p>
                 <span class="header_ts">统一投诉电话(仅处理投诉问题):</span>
                 <p class="header_td">400-028-1009</p>
+                    <i class="iconfont icon-daojishi heade-djs"></i>
                 <span class="header_gk">距高考还有</span>
                 <p class="header_gk1">{{day}}</p>
                 <span class="header_gk2">天</span> 
@@ -78,6 +79,12 @@ export default {
 }
 </script>
 <style scoped>
+.heade-djs{
+    float: left;
+    line-height: 40px;
+    margin: 0px 3px 0px 35px;
+    color: #f00;
+}
 .head-wx{
     cursor: pointer;
 }
@@ -226,7 +233,7 @@ export default {
     line-height: 40px;
     text-align: center;
     font-weight: 700;
-    margin-left: 50px;
+    /* margin-left: 50px; */
 }
 
 .header_gk2 {

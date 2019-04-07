@@ -22,7 +22,7 @@
   <div class="ds_rm-right clear">    
     <a class="ds-opacity" href="javascript:;">
         <font class="ds-primary">
-          <i class="iconfont icon-copy"></i>
+          <i class="iconfont icon-gaokao"></i>
           <span>高考辅导</span>
         </font>
         <p>紧随高考变化,专注教学</p>
@@ -36,14 +36,14 @@
     </a>
     <a class="ds-opacity" href="javascript:;">
         <font class="ds-success">
-          <i class="iconfont icon-biaoqian"></i>
+          <i class="iconfont icon-shuben"></i>
           <span>中考辅导</span>
         </font>
         <p>中考双师课程,严选师资</p>
     </a>
     <a class="ds-opacity" href="javascript:;">
         <font class="ds-warning">
-          <i class="iconfont icon-sousuo"></i>
+          <i class="iconfont icon-fudu"></i>
           <span>高考复读</span>
         </font>
         <P>复读这一路,戴氏来助攻</P>

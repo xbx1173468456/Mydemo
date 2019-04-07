@@ -1,10 +1,10 @@
 <template>
 <div class="ds_gz clear">
     <div class="ds_gz-left clear">
-        <h3 class="gzleft-heade gz-left">热点关注</h3>
+        <h3 class="gzleft-heade gz-left gz-h3">热点关注</h3>
         <div class="gz-left gzleft-left">
           <form class="gzleft-form">
-            <i class=""></i>
+            <i class="iconfont icon-sousuo gz-sou"></i>
             <input type="text" placeholder="请输入关键字">
             <button>搜索</button>
           </form>
@@ -26,13 +26,13 @@
             <a href="javascript:;">
               <img src="http://127.0.0.1:3000/img/3(1).jpg" alt="">
             </a>
-            <div>成都戴氏教育精品中心以“艰苦磨砺、勤思创新、执着追求”作为业文化 核心，将“以人为本、实施创新教育、创建终身教育大课堂、精打造一个国际  性教育品牌，建成一个完善的戴氏全球服务网”为目标，步走向教育服务多元   化，形成了“戴氏教育”这一著名教育品牌...
-            </div>
+            <p class="gzleft-msg">成都戴氏教育精品中心以“艰苦磨砺、勤思创新、执着追求”作为业文化 核心，将“以人为本、实施创新教育、创建终身教育大课堂、精打造一个国际  性教育品牌，建成一个完善的戴氏全球服务网”为目标，步走向教育服务多元   化，形成了“戴氏教育”这一著名教育品牌...
+            </p>
         </div>
     </div>
     <div class="ds_gz-right">
-        <h3>每日导读</h3>
-        <ul>
+        <h3 class="gz-h3">每日导读</h3>
+        <ul class="gzright">
             <li>
                 <a href="javascript:;">
                     <img class="ds_gz-right-img" src="http://127.0.0.1:3000/img/514.jpg" alt="">
@@ -57,8 +57,51 @@ export default {
 }
 </script>
 <style scoped>
+.gz-sou{
+    position: absolute;
+    color: #bbb;
+    left: 15px;
+    top: 14px;
+}
+.gzright a:hover{
+    text-decoration: underline;
+    color: #5291ef;
+}
+.gzright a{
+    color:#888;
+    font-size: 13px;
+    line-height: 240%;
+
+}
+.gzright img{
+    width: 100%;
+}
+.gzright li{
+    float: left;
+}
+.gzleft-msg::before{
+    content: "";
+    display: block;
+    width: 0px;
+    height: 10px;
+    border:2px solid #5291ef;
+    position: absolute;
+    left: -1px;
+    top: 16px;
+}
+.gzleft-msg{
+    font-size: 13px;
+    text-align: left;
+    padding: 13px;
+    border: 1px solid #ddd;
+    line-height: 150%;
+    margin-top: 18px;
+    position: relative;
+}
 .gzleft-right{
-    width: 70%;
+    width: 67%;
+    float: left;
+    margin-left: 25px;
 }
 .gzleft-miidle a:hover{
     background-color:#5291ef; 
@@ -103,7 +146,7 @@ export default {
     width: 245px;
     position: relative;
 }
-.ds_gz-left>h3{
+.gz-h3{
     width: 100%;
     margin-bottom: 20px;
     color: #5291ef;
@@ -125,10 +168,12 @@ export default {
     float: left;
 }
 .ds_gz-left {
-    width: 70%;
+    width: 75%;
+    float: left;
 }
 .ds_gz-right{
     float:right;
-    width: 30%;
+    width: 23.5%;
+
 }
 </style>

@@ -8,11 +8,13 @@ import navtab from './components/zujian/navtab.vue'
 import sztab from './components/zujian/sztab.vue'
 import Login from './components/home/Login.vue'
 import Reg from './components/home/Reg.vue'
+import Mydemo from './components/Demo/Mydemo.vue'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
+    {path:'/',component:Mydemo},
     {path:'/Reg',component:Reg},
     {path:'/Login',component:Login},
     {path:'/sztab',component:sztab},

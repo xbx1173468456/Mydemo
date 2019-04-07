@@ -1,6 +1,6 @@
 <template>
   <div id="Tab">
-    <p>小学课程</p>
+    <p></p>
   </div>
 </template>
 <script>

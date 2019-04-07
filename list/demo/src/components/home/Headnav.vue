@@ -3,8 +3,8 @@
     <div class="ds-nav clear">
         <a class="nav-bar nav-shou" href="javascript:">首页</a>
         <div @mouseenter="jump1" @mouseleave="jump2" class="nav-bar">
-            <a class="nav-size" href="javascript:;">戴氏课程</a>
-            <span class="nav_jt jt-dk"></span>
+            <a class="nav-size" href="javascript:;">优氏课程</a>
+            <i class="iconfont icon-jiantoudown jt-dk"></i>
            <div v-show="kc" class="ds_nav-kc">
                 <!-- <navtab/> -->
                 <div class="nav-kc">
@@ -13,8 +13,8 @@
            </div> 
         </div>
         <div @mouseenter="jump3" @mouseleave="jump4" class="nav-bar">
-            <a class="nav-size" href="javascript:;">戴氏课程</a>
-            <span class="nav_jt jt-dk"></span>
+            <a class="nav-size" href="javascript:;">优氏课程</a>
+            <i class="iconfont icon-jiantoudown jt-dk"></i>
            <div v-show="sz" class="ds_nav-kc">
                <div class="nav-kc">
                     <sztab v-for="(item,i) of this.list" :key="i" :item="item"/>
@@ -23,7 +23,7 @@
         </div>
         <div class="nav-bar">
             <a class="nav-size" href="javascript:;">校区查询</a>
-            <a class="nav-size" href="javascript:;">戴氏资讯</a>
+            <a class="nav-size" href="javascript:;">优氏资讯</a>
             <a class="nav-size" href="javascript:;">教育资讯</a>
             <a class="nav-size" href="javascript:;">教学环境</a>
             <a class="nav-size" href="javascript:;">在线报名</a>
@@ -103,14 +103,15 @@ export default {
     margin-left: 30px;
 }
 .jt-dk{
-top: 11px;
-left: -25px;
+position: relative;
+top: 1px;
+left: -30px;
 }
 .nav-size:hover{
     color: #5291ef;
 }
 .nav-size{
-    padding:0px 28px;
+    padding:0px 27px;
     font-size: 16px;
     color: #000;
     line-height: 40px;
