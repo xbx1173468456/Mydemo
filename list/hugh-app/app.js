@@ -21,14 +21,6 @@ app.use(express.static("public"));
 app.listen(3000);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
-// app.use(session({
-//     secret: "随机字符串",
-//     cookie: { maxAge: 60 * 1000 * 30 }, //过期时间ms
-//     resave: false,
-//     saveUninitialized: true
-// }));
-
 //功能1：登录
 app.get('/login', (req, res) => {
     var u = req.query.uname;
@@ -105,4 +97,12 @@ app.get('/xzhy',(req,res)=>{
     if(err) throw err;
     res.send({code:1,data:result});
     })
+});
+// 热点关注
+app.get('/Rdgz',(req,res)=>{
+    var sql="SELECT guanzhu_msg FROM hugh_guanzhu";
+    pool.query(sql,(err,result)=>{
+        if(err) throw err;
+        res.send({code:1,data:result});
+    });
 });

@@ -1,139 +1,123 @@
 <template>
-  <div id="slider">
-    <div class="window" @mouseover="stop" @mouseleave="play">
-      <ul class="container" :style="containerStyle">
-        <li>
-          <img :src="sliders[sliders.length - 1].img" alt="">
-        </li>
-        <li v-for="(item, index) in sliders" :key="index">
-          <img :src="item.img" alt="">
-        </li>
-        <li>
-          <img :src="sliders[0].img" alt="">
-        </li>
-      </ul>
-      <ul class="direction">
-        <li class="left" @click="move(600, 1, speed)">
-          <svg class="icon" width="30px" height="30.00px" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path fill="#ffffff" d="M481.233 904c8.189 0 16.379-3.124 22.628-9.372 12.496-12.497 12.496-32.759 0-45.256L166.488 512l337.373-337.373c12.496-12.497 12.496-32.758 0-45.255-12.498-12.497-32.758-12.497-45.256 0l-360 360c-12.496 12.497-12.496 32.758 0 45.255l360 360c6.249 6.249 14.439 9.373 22.628 9.373z"  /></svg>          
-        </li>
-        <li class="right" @click="move(600, -1, speed)">
-          <svg class="icon" width="30px" height="30.00px" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path fill="#ffffff" d="M557.179 904c-8.189 0-16.379-3.124-22.628-9.372-12.496-12.497-12.496-32.759 0-45.256L871.924 512 534.551 174.627c-12.496-12.497-12.496-32.758 0-45.255 12.498-12.497 32.758-12.497 45.256 0l360 360c12.496 12.497 12.496 32.758 0 45.255l-360 360c-6.249 6.249-14.439 9.373-22.628 9.373z"  /></svg>          
+  <div class="carousel-container">
+    <header>轮播图</header>
+    <section @mouseenter="_stop" @mouseleave="_begin">
+      <ul class="carousel-text" @click="changePic">
+        <li
+          :class="{active: currentIndex === index}"
+          v-for="(item, index) in carouselList" 
+          :data-index="index" 
+          :key="index">
+          {{item.text}}
         </li>
       </ul>
-      <ul class="dots">
-        <li v-for="(dot, i) in sliders" :key="i" 
-        :class="{dotted: i === (currentIndex-1)}"
-        @click = jump(i+1)
-        >
+      <transition-group tag="ul" class='carousel-img-container' name="fade">
+        <li v-for="(item, index) in carouselList" 
+            :key="index" 
+            v-show="index===currentIndex">
+          <img :src="item.src" :alt="item.text" class="carousel-img">
         </li>
-      </ul>
-    </div>
+      </transition-group>
+    </section>
   </div>
 </template>
  
 <script>
 export default {
-  name: 'slider',
-  props: {
-    initialSpeed: {
-      type: Number,
-      default: 30
-    },
-    initialInterval: {
-      type: Number,
-      default: 4
-    }
-  },
+  name: 'c-carousel',
   data () {
     return {
-      sliders:[
+      /**
+       * 图片src
+       */
+      // src: require('@/assets/images/D2.1_1@2x.png'),
+      /**
+       * 轮播图数据
+       */
+      carouselList: [
         {
-          img:'http:127.0.0.1:3000/img/8.jpg'
+          text: '1. 第一张图片', 
+          src: require('http://127.0.0.1:3000/car/1.jpg')
         },
         {
-          img:'http:127.0.0.1:3000/img/8.jpg'
+          text: '2. 第二张图片',
+          src: require('http://127.0.0.1:3000/car/2.jpg'),
         },
-        {
-          img:'../../static/images/3.jpg'
-        },
-        {
-          img:'../../static/images/4.jpg'
-        },
-        {
-          img:'../../static/images/5.jpg'
+         {
+          text: '3. 第三张图片',
+          src: require('http://127.0.0.1:3000/car/3.jpg'),
         }
       ],
-      currentIndex:1,
-      distance:-600,
-      transitionEnd: true,
-      speed: this.initialSpeed
+      /**
+       * 当前正在显示的图片
+       */
+      currentIndex: 0,
+      /**
+       * 切换图片定时器
+       */
+      carouselTimer: null
     }
   },
-  computed:{
-    containerStyle() {
-      return {
-        transform:`translate3d(${this.distance}px, 0, 0)`
-      }
-    },
-    interval() {
-      return this.initialInterval * 1000
-    }
+  mounted () {
+    this._begin()
   },
-  mounted() {
-    this.init()
-  },
-  methods:{
-    init() {
-      this.play()
-      window.onblur = function() { this.stop() }.bind(this)
-      window.onfocus = function() { this.play() }.bind(this)
+  methods: {
+    /**
+     * 点击切换图片
+     */
+    changePic (e) {
+      this.currentIndex = parseInt(e.target.dataset.index)
     },
-    move(offset, direction, speed) {
-      if (!this.transitionEnd) return
-      this.transitionEnd = false
-      direction === -1 ? this.currentIndex += offset/600 : this.currentIndex -= offset/600
-      if (this.currentIndex > 5) this.currentIndex = 1
-      if (this.currentIndex < 1) this.currentIndex = 5
- 
-      const destination = this.distance + offset * direction
-      this.animate(destination, direction, speed)
-    },
-    animate(des, direc, speed) {
-      if (this.temp) { 
-        window.clearInterval(this.temp)
-        this.temp = null 
+    /**
+     * 定时切换图片
+     */
+    autoPlay () {
+      this.currentIndex++
+      if (this.currentIndex >= this.carouselList.length) {
+        this.currentIndex = 0
       }
-      this.temp = window.setInterval(() => {
-        if ((direc === -1 && des < this.distance) || (direc === 1 && des > this.distance)) {
-          this.distance += speed * direc
-        } else {
-          this.transitionEnd = true
-          window.clearInterval(this.temp)
-          this.distance = des
-          if (des < -3000) this.distance = -600
-          if (des > -600) this.distance = -3000
-        }
-      }, 20)
     },
-    jump(index) {
-      const direction = index - this.currentIndex >= 0 ? -1 : 1
-      const offset = Math.abs(index - this.currentIndex) * 600
-      const jumpSpeed = Math.abs(index - this.currentIndex) === 0 ? this.speed : Math.abs(index - this.currentIndex) * this.speed 
-      this.move(offset, direction, jumpSpeed)
+    /**
+     * 开始定时切换图片
+     */
+    _begin () {
+      this.carouselTimer = setInterval (this.autoPlay, 4000)
     },
-    play() {
-      if (this.timer) {
-        window.clearInterval(this.timer)
-        this.timer = null
-      }
-      this.timer = window.setInterval(() => {
-        this.move(600, -1, this.speed)
-      }, this.interval)
-    },
-    stop() {
-      window.clearInterval(this.timer)
-      this.timer = null
+    /**
+     * 停止定时切换图片
+     */
+    _stop () {
+      clearInterval(this.carouselTimer)
     }
-  }
+  
 }
 </script>
+  <style>
+  .carousel-img-container {
+    overflow: hidden;
+    width: 100%;
+    position: relative;}
+    .li {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;}
+      .img {
+        width: 100%;
+      }
+     }
+   }
+// 动画 
+.fade-enter-active, .fade-leave-active {
+  transition: all 2s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+  transition: translateY(20px);
+}
+  </style>
+  

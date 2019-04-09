@@ -9,12 +9,14 @@ import sztab from './components/zujian/sztab.vue'
 import Login from './components/home/Login.vue'
 import Reg from './components/home/Reg.vue'
 import Mydemo from './components/Demo/Mydemo.vue'
+import Slider from './components/exp/Slider.vue'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {path:'/',component:Mydemo},
+    {path:'/Slider',component:Slider},
     {path:'/Reg',component:Reg},
     {path:'/Login',component:Login},
     {path:'/sztab',component:sztab},

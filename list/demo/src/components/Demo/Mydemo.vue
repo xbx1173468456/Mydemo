@@ -4,9 +4,9 @@
   <Dslogo/>
   <Headnav/>
   <Rmkc/>
-  <Lunbo/>
+  <!-- <Lunbo/> -->
   <Dsxunlian :xl="xl"/>
-  <Rdgz/>
+  <Rdgz :gzrs="gzrs" :gzdd="gzdd" :gzmd="gzmd"/>
   <img class="ds-middle" src="http://127.0.0.1:3000/img/2.jpg"/>
   <Jstd :chin="chin" :mat="mat" :eng="eng"/>
   <Xzhy :hy="hy" :kt="kt" :hz="hz"/>
@@ -19,7 +19,7 @@ import Header from '../home/Header.vue'
 import Dslogo from '../home/Dslogo.vue'
 import Headnav from '../home/Headnav.vue'
 import Rmkc from '../home/Rmkc.vue'
-import Lunbo from '../home/Lunbo.vue'
+// import Lunbo from '../home/Lunbo.vue'
 import Dsxunlian from '../home/Dsxunlian.vue'
 import Rdgz from '../home/Rdgz.vue'
 import Jstd from '../home/Jstd.vue'
@@ -33,7 +33,7 @@ export default {
     Header,
     Dslogo,
     Headnav,
-    Lunbo,
+    // Lunbo,
     Dsxunlian,
     Rdgz,
     Jstd,
@@ -50,15 +50,30 @@ export default {
       xz:[],
       hy:[],
       hz:[],
-      kt:[]
+      kt:[],
+      gz:[],
+      gzrs:[],
+      gzmd:[],
+      gzdd:[]
     }
   },
   created(){
     this.xunlian();
     this.teach();
     this.xzhy();
+    this.Rdgz();
   },
   methods:{
+    Rdgz(){
+      var url="http://127.0.0.1:3000/Rdgz";
+      this.axios.get(url).then(result=>{
+        this.gz=result.data.data;
+        this.gzrs=this.gz.slice(0,10);
+        this.gzmd=this.gz.slice(10,11);
+        this.gzdd=this.gz.slice(11,18);
+        // console.log(this.gzmd);
+      })
+    },
     xunlian(){
       this.axios.get("http://localhost:3000/dslian").then(result=>{
         this.xl=result.data.data;
