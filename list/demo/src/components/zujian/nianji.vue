@@ -11,30 +11,18 @@
           <option value="请选择年级">请选择年级</option>
         </optgroup>
         <optgroup label="高中">
-          <option value="高一">高一</option>
-          <option value="高二">高二</option>
-          <option value="高三">高三</option>
+          <option v-for="(item,index) of gaonian" :key="index" :value="item.ban_msg">{{item.ban_msg}}</option>
         </optgroup>
         <optgroup label="初中">
-          <option value="初一">初一</option>
-          <option value="初二">初二</option>
-          <option value="初三">初三</option>
+          <option v-for="(item,index) of chunian" :key="index" :value="item.ban_msg">{{item.ban_msg}}</option>
         </optgroup>
         <optgroup label="小学">
-          <option value="一年级">一年级</option>
-          <option value="二年级">二年级</option>
-          <option value="三年级">三年级</option>
-          <option value="四年级">四年级</option>
-          <option value="五年级">五年级</option>
-          <option value="六年级">六年级</option>
+          <option v-for="(item,index) of xiaonian" :key="index" :value="item.ban_msg">{{item.ban_msg}}</option>
         </optgroup>
       </select>
       <select class="cx-nian">
         <optgroup>
-          <option value="选择补习班型">选择补习班型</option>
-          <option value="VIP1对1私人订制">VIP1对1私人订制</option>
-          <option value="2~6人精品小班">2~6人精品小班</option>
-          <option value="2~6人精品小班">10余人特色大班</option>
+          <option v-for="(item,index) of bannian" :key="index" :value="item.ban_msg">{{item.ban_msg}}</option>
         </optgroup>
       </select>
       <input class="cx-dts" type="text" placeholder="请输入联系地址">
@@ -45,6 +33,7 @@
 </template>
 <script>
 export default {
+  props:["gaonian","chunian","xiaonian","bannian"],
   data(){
     return{}
   }

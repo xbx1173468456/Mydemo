@@ -1,12 +1,12 @@
 <template>
-  <div id="topBanner" class="slide">
-    <div class="banner">
-      <a class="banner-item" v-for="(item,i) of bannerList" :key="i" v-show="i===mark" href="javascript:;">
-        <img :src="item"/>
-      </a>
+  <div class="carousel-wrap" id="carousel">
+    <div>
+        <a v-show="index==currentIndex" v-for="(list,index) of slideList" :key="index" @mouseenter="stop" @mouseleave="go" href="javascript:;">
+          <img :src="list"/>
+        </a>
     </div>
-    <div class="bar">
-      <p :class="{active:i===mark}" v-for="(item,i) of bannerList" :key="i" class="bar-cir"></p>
+    <div class="carousel-items"> 
+      <span class="items-cir" v-for="(item,index) of slideList" :key="index" :class="{slider:index==currentIndex}" @mouseover="change(index)"></span>
     </div>
   </div>
 </template>
@@ -14,69 +14,86 @@
 export default {
   data(){
     return{
-      mark:0,
-      bannerList:[
+      slideList:[
         'http://127.0.0.1:3000/car/1.jpg',
         'http://127.0.0.1:3000/car/2.jpg',
         'http://127.0.0.1:3000/car/3.jpg',
         'http://127.0.0.1:3000/car/4.jpg'
-      ]
-    }
-  },
-  methods:{
-    autoPlay(){
-      this.mark++;
-      if(this.mark===4){
-        this.mark=0;
-      }
-    },
-    play(){
-      setInterval(this.autoPlay(),2000);
-    },
-    change(i){
-      this.mark=i;
+      ],
+      currentIndex:0,
+      timer:null
     }
   },
   created(){
-    this.play();
-  }
+    this.go();
+  },
+  methods:{
+    autoPlay(){
+      this.currentIndex++;
+      if(this.currentIndex>this.slideList.length-1){
+        this.currentIndex=0;
+      }
+    },
+    go(){
+      this.timer=setInterval(()=>{
+        this.autoPlay();
+      },4000)
+    },
+    stop(){
+      clearInterval(this.timer);
+      this.timer=null;
+    },
+    change(index){
+      this.currentIndex=index;
+    }
+  },
 }
 </script>
 <style>
-  .active{
-    background: #bfd6b6 !important;
-  }
-  .bar{
+  .carousel-wrap {
+  position: relative;
+  height: 453px;
+  width: 100%;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+.slide-ul {
+  width: 100%;
+  height: 100%;
+}
+.carousel-wrap li {
+    position: absolute;
     width: 100%;
-    display: flex;
-    justify-content: center;
-    position: relative;
-    top: -30px;
-    z-index: 2px;
+    height: 100%;
   }
-  .bar-cir{
+.carousel-wrap img {
+      width: 100%;
+      height: 100%;
+    }
+.carousel-items {
+  position: absolute;
+  z-index: 10;
+  top: 380px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 0;
+}
+.items-cir{
+    display: inline-block;
+    height: 8px;
+    width: 8px;
     margin: 0 3px;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    border: 1px solid #000;
+    border-radius:100%; 
+    background-color: #b2b2b2;
+    cursor: pointer;
   }
-  #topBanner{
-    width: 600px;
-    height: 500px;
-    margin: 0 auto;
-    overflow: hidden;
-    /* position: relative; */
-  }
-  .banner{
-    width: 3500px;
-  }
-  .banner::after{
-    content: "";
-    display: block;
-    clear: both;
-  }
-  .banner-item{
-    float: left;
+.slider{
+    width: 20px;
+    margin: 0 3px;
+    border-radius:20px; 
+    background-color:red;
+    /* transition: linear 1.5s; */
   }
 </style>

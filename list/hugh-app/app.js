@@ -106,3 +106,19 @@ app.get('/Rdgz',(req,res)=>{
         res.send({code:1,data:result});
     });
 });
+// 轮播图
+app.get('/Lunbo',(req,res)=>{
+    var sql="SELECT img_url FROM hugh_lunbo";
+    pool.query(sql,(err,result)=>{
+        if(err) throw err;
+        res.send({code:1,data:result});
+    });
+});
+// 年级
+app.get('/Nianji',(req,res)=>{
+    var sql="SELECT ban_msg FROM hugh_ban";
+    pool.query(sql,(err,result)=>{
+        if(err) throw err;
+        res.send({code:1,data:result});
+    });
+});

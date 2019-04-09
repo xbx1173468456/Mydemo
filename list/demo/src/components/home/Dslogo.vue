@@ -9,9 +9,6 @@
                 <i class="iconfont icon-lsousuo log-sou"></i>
                 <a class="ds_logo-a" href="javascript:;">搜索</a>
                 <input class="ds_logo-input" type="text" placeholder="请输入关键字">
-                <div class="ds_logo_sx">
-                    <div class="ds_logo_sx1"></div>
-                </div>
                 <ul class="clear">
                     <li class="right-kc">
                         <span class="ds_logo_rc">热门搜索词:</span>
@@ -49,9 +46,6 @@ export default {
     position:absolute;
     left: 30px;
     top:12px;
-}
-.ds_logo_rc{
-    margin-left:30px; 
 }
 .ds_logo {
     height: 100px;

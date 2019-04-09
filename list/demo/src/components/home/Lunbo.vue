@@ -1,123 +1,98 @@
 <template>
-  <div class="carousel-container">
-    <header>轮播图</header>
-    <section @mouseenter="_stop" @mouseleave="_begin">
-      <ul class="carousel-text" @click="changePic">
-        <li
-          :class="{active: currentIndex === index}"
-          v-for="(item, index) in carouselList" 
-          :data-index="index" 
-          :key="index">
-          {{item.text}}
-        </li>
-      </ul>
-      <transition-group tag="ul" class='carousel-img-container' name="fade">
-        <li v-for="(item, index) in carouselList" 
-            :key="index" 
-            v-show="index===currentIndex">
-          <img :src="item.src" :alt="item.text" class="carousel-img">
-        </li>
-      </transition-group>
-    </section>
+  <div id="carousel">
+    <div class="carousel-wrap">
+        <a v-show="index==currentIndex" v-for="(list,index) of lnbo" :key="index" @mouseenter="stop" @mouseleave="go" href="javascript:;">
+          <img :src="list.img_url"/>
+        </a>
+    </div>
+    <div class="carousel-items"> 
+      <span class="items-cir" v-for="(item,index) of lnbo" :key="index" :class="{slider:index==currentIndex}" @mouseover="change(index)"></span>
+    </div>
+    <div class="ds-nianji">
+      <nianji :bannian="bannian" :chunian="chunian" :xiaonian="xiaonian" :gaonian="gaonian" class="nianji-item"/>
+    </div>
   </div>
 </template>
- 
 <script>
+import nianji from '../zujian/nianji.vue'
 export default {
-  name: 'c-carousel',
-  data () {
-    return {
-      /**
-       * 图片src
-       */
-      // src: require('@/assets/images/D2.1_1@2x.png'),
-      /**
-       * 轮播图数据
-       */
-      carouselList: [
-        {
-          text: '1. 第一张图片', 
-          src: require('http://127.0.0.1:3000/car/1.jpg')
-        },
-        {
-          text: '2. 第二张图片',
-          src: require('http://127.0.0.1:3000/car/2.jpg'),
-        },
-         {
-          text: '3. 第三张图片',
-          src: require('http://127.0.0.1:3000/car/3.jpg'),
-        }
-      ],
-      /**
-       * 当前正在显示的图片
-       */
-      currentIndex: 0,
-      /**
-       * 切换图片定时器
-       */
-      carouselTimer: null
+  components:{
+    'nianji':nianji
+  },
+  props:["lnbo","gaonian","chunian","xiaonian","bannian"],
+  data(){
+    return{
+      currentIndex:0,
+      timer:null
     }
   },
-  mounted () {
-    this._begin()
+  created(){
+    this.go();
   },
-  methods: {
-    /**
-     * 点击切换图片
-     */
-    changePic (e) {
-      this.currentIndex = parseInt(e.target.dataset.index)
-    },
-    /**
-     * 定时切换图片
-     */
-    autoPlay () {
-      this.currentIndex++
-      if (this.currentIndex >= this.carouselList.length) {
-        this.currentIndex = 0
+  methods:{
+    autoPlay(){
+      this.currentIndex++;
+      if(this.currentIndex>this.lnbo.length-1){
+        this.currentIndex=0;
       }
     },
-    /**
-     * 开始定时切换图片
-     */
-    _begin () {
-      this.carouselTimer = setInterval (this.autoPlay, 4000)
+    go(){
+      this.timer=setInterval(()=>{
+        this.autoPlay();
+      },4000)
     },
-    /**
-     * 停止定时切换图片
-     */
-    _stop () {
-      clearInterval(this.carouselTimer)
+    stop(){
+      clearInterval(this.timer);
+      this.timer=null;
+    },
+    change(index){
+      this.currentIndex=index;
     }
-  
+  },
 }
 </script>
-  <style>
-  .carousel-img-container {
-    overflow: hidden;
-    width: 100%;
-    position: relative;}
-    .li {
-      width: 100%;
-      height: 100%;
-      position: absolute;
-      left: 0;
-      top: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;}
-      .img {
-        width: 100%;
-      }
-     }
-   }
-// 动画 
-.fade-enter-active, .fade-leave-active {
-  transition: all 2s;
+<style>
+.nianji-item{
+  float: left;
+  position: absolute;
+  top: 390px;
 }
-.fade-enter, .fade-leave-to {
-  opacity: 0;
-  transition: translateY(20px);
+.ds-nianji{
+    width: 1200px;
+    margin: 0 auto;
+  }
+.carousel-wrap{
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color: #fff;
+  margin-top:40px; 
 }
-  </style>
-  
+.carousel-wrap img {
+      width:100%;
+      height: 510px;
+    }
+.carousel-items {
+  position: relative;
+  z-index: 2;
+  bottom: 25px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.items-cir{
+    display: inline-block;
+    height: 8px;
+    width: 8px;
+    margin: 0 3px;
+    border-radius:100%; 
+    background-color: #b2b2b2;
+    cursor: pointer;
+  }
+.slider{
+    width: 20px;
+    margin: 0 3px;
+    border-radius:20px; 
+    background-color:#4354b1;
+  }
+</style>

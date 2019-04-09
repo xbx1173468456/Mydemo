@@ -4,7 +4,7 @@
   <Dslogo/>
   <Headnav/>
   <Rmkc/>
-  <!-- <Lunbo/> -->
+  <Lunbo :lnbo="lnbo" :gaonian="gaonian" :chunian="chunian" :xiaonian="xiaonian" :bannian="bannian"/>
   <Dsxunlian :xl="xl"/>
   <Rdgz :gzrs="gzrs" :gzdd="gzdd" :gzmd="gzmd"/>
   <img class="ds-middle" src="http://127.0.0.1:3000/img/2.jpg"/>
@@ -19,7 +19,7 @@ import Header from '../home/Header.vue'
 import Dslogo from '../home/Dslogo.vue'
 import Headnav from '../home/Headnav.vue'
 import Rmkc from '../home/Rmkc.vue'
-// import Lunbo from '../home/Lunbo.vue'
+import Lunbo from '../home/Lunbo.vue'
 import Dsxunlian from '../home/Dsxunlian.vue'
 import Rdgz from '../home/Rdgz.vue'
 import Jstd from '../home/Jstd.vue'
@@ -33,7 +33,7 @@ export default {
     Header,
     Dslogo,
     Headnav,
-    // Lunbo,
+    Lunbo,
     Dsxunlian,
     Rdgz,
     Jstd,
@@ -54,7 +54,13 @@ export default {
       gz:[],
       gzrs:[],
       gzmd:[],
-      gzdd:[]
+      gzdd:[],
+      lnbo:[],
+      nian:[],
+      gaonian:[],
+      chunian:[],
+      xiaonian:[],
+      bannian:[]
     }
   },
   created(){
@@ -62,8 +68,30 @@ export default {
     this.teach();
     this.xzhy();
     this.Rdgz();
+    this.Lunbo();
+    this.Nianji();
   },
   methods:{
+    // 年级
+    Nianji(){
+      var url="http://127.0.0.1:3000/Nianji";
+      this.axios.get(url).then(result=>{
+        this.nian=result.data.data;
+        this.gaonian=this.nian.slice(1,4);
+        this.chunian=this.nian.slice(4,7);
+        this.xiaonian=this.nian.slice(7,13);
+        this.bannian=this.nian.slice(13,20);
+      })
+    },
+    // 轮播图
+    Lunbo(){
+      var url="http://127.0.0.1:3000/Lunbo";
+      this.axios.get(url).then(result=>{
+        this.lnbo=result.data.data;
+        // console.log(this.lnbo);
+      })
+    },
+    // 热点关注
     Rdgz(){
       var url="http://127.0.0.1:3000/Rdgz";
       this.axios.get(url).then(result=>{
@@ -74,11 +102,13 @@ export default {
         // console.log(this.gzmd);
       })
     },
+    // 训练
     xunlian(){
       this.axios.get("http://localhost:3000/dslian").then(result=>{
         this.xl=result.data.data;
       });
     },
+    // 老师团体
     teach(){
       var url="http://127.0.0.1:3000/jstd";
       this.axios.get(url).then(result=>{
