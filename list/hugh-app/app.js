@@ -122,3 +122,16 @@ app.get('/Nianji',(req,res)=>{
         res.send({code:1,data:result});
     });
 });
+// 老师详情
+app.get('/teaches',(req,res)=>{
+    var sql="SELECT img_url,tname,tys,msg,tln FROM hugh_teache";
+    pool.query(sql,(err,result)=>{
+        if(err) throw err;
+        res.send({code:1,data:result});
+    });
+});
+
+
+
+
+

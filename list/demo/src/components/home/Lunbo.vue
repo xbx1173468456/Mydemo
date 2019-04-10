@@ -66,12 +66,8 @@ export default {
   width: 100%;
   overflow: hidden;
   background-color: #fff;
-  margin-top:40px; 
+  margin-top:30px; 
 }
-.carousel-wrap img {
-      width:100%;
-      height: 510px;
-    }
 .carousel-items {
   position: relative;
   z-index: 2;

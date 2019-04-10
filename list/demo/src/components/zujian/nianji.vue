@@ -8,7 +8,7 @@
     <form action="">
       <select class="cx-nian">
         <optgroup> 
-          <option value="请选择年级">请选择年级</option>
+          <option value="请选择补习年级">请选择补习年级</option>
         </optgroup>
         <optgroup label="高中">
           <option v-for="(item,index) of gaonian" :key="index" :value="item.ban_msg">{{item.ban_msg}}</option>
@@ -22,6 +22,7 @@
       </select>
       <select class="cx-nian">
         <optgroup>
+          <option value="请选择补习班型">请选择补习班型</option>
           <option v-for="(item,index) of bannian" :key="index" :value="item.ban_msg">{{item.ban_msg}}</option>
         </optgroup>
       </select>
