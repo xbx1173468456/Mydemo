@@ -1,7 +1,7 @@
 <template>
   <div class="teaches-desc">
-    <div class="teacher-desc">
-      <div v-for="(item,index) of teaches" :key="index" class="teacher-cart clear">
+    <div class="teacher-desc desc clear">
+      <div v-for="(item,index) of teache" :key="index" class="teacher-cart clear" :style="{'left':-(nowIndex*1100)+'px'}">
         <img :src="item.img_url" />
         <div class="teacher-xq">
           <h3>{{item.tname}}</h3>
@@ -14,20 +14,39 @@
       </div>
     </div>
     <div class="teacher-head">
-      <p v-for="(item,index) of teaches" :key="index" class="teacher-tx" :style="{'background-image':'url('+item.img_url+')'}"></p>
+      <p @click="jump(index)" v-for="(item,index) of teache" :key="index" class="teacher-tx" :style="{'background-image':'url('+item.img_url+')'}" :class="{tx:nowIndex===index}"></p>
     </div>
     <a class="teaches-ljgd" href="javascript:;">了解更多资源配备</a>
   </div>
 </template>
 <script>
 export default {
-  props:["teaches"],
+  props:["teache"],
   data(){
-    return{}
-  }
+    return{
+      nowIndex:0
+    }
+  },
+  created(){
+  },
+  methods:{
+    jump(index){
+      this.nowIndex=index;
+    }
+  },
 }
 </script>
 <style scoped>
+.tx{
+  border-color: #f37203 !important;
+}
+.teacher-head{
+  display: flex;
+}
+.teacher-desc{
+  width: 10000px;
+  margin-top: 100px;
+}
 .teaches-ljgd{
   display: block;
   width: 220px;
@@ -96,11 +115,14 @@ export default {
   padding-left:120px; 
 }
 .teacher-cart{
-  width: 100%;
-  margin-top: 80px;
+  width: 1100px;
+  float: left;
+  position: relative;
+  transition: linear .4s;
 }
 .teaches-desc{
   width: 1100px;
   margin: 0px auto;
+  overflow: hidden;
 }
 </style>

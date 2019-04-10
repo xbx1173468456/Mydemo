@@ -13,41 +13,27 @@
 				<span>028-00000000</span>
 			</b>
 			<router-link to="/" class="ds-fr ds-header_min-link">首页</router-link>
-			<!-- <a href="http://www.dai-shi.net/" ></a> -->
 		</div>
 	</header>
 	<div class="teaches-body">
 		<Teachbody/>
-		<Tbodydesc :teaches="teaches"/>
-		<!-- <Tbodydesc :teacher="teacher"/> -->
 	</div>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
+	<Footer/>
 </div>
 </template>
 <script>
 import Teachbody from './Teachbody.vue'
-import Tbodydesc from './Tbodydesc.vue'
+import Footer from '../home/Footer.vue'
+
 
 export default {
 	components:{
 		Teachbody,
-		Tbodydesc
+		Footer
 	},
   data(){
     return{
-			teaches:[],
-			teacher:[]
+			
     }
 	},
 	created(){
@@ -59,7 +45,10 @@ export default {
 			this.axios.get(url).then(result=>{
 			this.teaches=result.data.data.slice(0,8);
 			this.teacher=result.data.data.slice(8,16);
-			// console.log(this.teaches);
+			this.teachess=result.data.data.slice(6,14);
+			this.teacherr=result.data.data.slice(3,11);
+			this.teache=result.data.data.slice(7,15);
+			
 			});
 		}
 	}
