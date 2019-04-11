@@ -34,7 +34,6 @@ export default {
 	methods:{
     jump(index){
       this.timer=index;
-      // console.log(item);
     },
 		Teache(){
 			var url="http://127.0.0.1:3000/teaches";

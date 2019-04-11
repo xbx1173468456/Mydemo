@@ -2,7 +2,7 @@
 <div class="ds-teaches">
   <header class="ds-header_min">
 		<div class="ds-wrap_xl ds-cf">
-			<a href="http://www.dai-shi.net/" class="ds-logo ds-fl">
+			<a href="/" class="ds-logo ds-fl">
 				<img src="http://127.0.0.1:3000/yuwen/7.png" height="50">
 			</a>
 			<font class="ds-teaches ds-fl">
@@ -61,7 +61,7 @@ export default {
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
-	background-image:url('http://127.0.0.1:3000/yuwen/001.jpg') ;
+	background-image:url('http://127.0.0.1:3000/yuwen/001.jpg');
 }
 .fr-dianhua i {
 	font-size: 22px;

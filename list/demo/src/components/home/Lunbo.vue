@@ -1,9 +1,9 @@
 <template>
   <div id="carousel">
     <div class="carousel-wrap">
-        <a v-show="index==currentIndex" v-for="(list,index) of lnbo" :key="index" @mouseenter="stop" @mouseleave="go" href="javascript:;">
+        <router-link v-show="index==currentIndex" v-for="(list,index) of lnbo" :key="index" @mouseenter="stop" @mouseleave="go" to="/Teaches">
           <img :src="list.img_url"/>
-        </a>
+        </router-link>
     </div>
     <div class="carousel-items"> 
       <span class="items-cir" v-for="(item,index) of lnbo" :key="index" :class="{slider:index==currentIndex}" @mouseover="change(index)"></span>

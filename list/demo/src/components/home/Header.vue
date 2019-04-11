@@ -4,18 +4,18 @@
     <div class="ds_header">
         <div class="ds_header-top clear">
             <div @mouseenter="kin" @mouseleave="kout" class="header_jp liright">
-                <span class="header_jp1" href="#">精品课程</span>
-                <Jt class="jt-xz"></Jt>
+                <span class="header_jp1">精品课程</span>
+                <i class="jt-xz h-jian iconfont icon-jiantoudown"></i>
                 <div v-show="jpkc" class="header_jpk clear">
                   <a v-for="(cla,i) in this.class" :key="i" href="javascript:;">{{cla.heade_msg}}</a>
                 </div>
             </div>
-                <a class="header_xz liright" href="#">学习中心</a>
-                <a class="header_zx liright" href="#">资讯</a>
+                <a class="header_xz liright" href="javascript:;">学习中心</a>
+                <a class="header_zx liright" href="javascript:;">资讯</a>
             <div @mouseenter="wxkin" @mouseleave="wxkout" class="liright head-wx">
-                <span class="header_wx" href="#">关注微信</span>                
+                <span class="header_wx">关注微信</span>                
                 <img v-show="wx" class="header_wxt" src="http://127.0.0.1:3000/img/3.jpg"/>
-                <Jt class="jt-wx"></Jt>
+                <i class="jt-wx h-jian iconfont icon-jiantoudown"></i>
             </div>
                 <span class="header_rx">24小时咨询热线:</span>
                 <p class="header_rx1">028-66000189</p>
@@ -30,12 +30,11 @@
   </div>  
 </template>
 <script>
-import jt from '../zujian/Jiantou.vue'
 
 export default {
   name:"Header",
   components:{
-      "Jt":jt
+     
   },
   data(){
     return{
@@ -79,6 +78,26 @@ export default {
 }
 </script>
 <style scoped>
+.head-wx:hover>i{
+transform: rotate(-180deg);
+}
+.header_jp:hover>i{
+transform: rotate(-180deg);
+}
+.h-jian{
+    font-size: 13px;
+    position: absolute;
+    top:13px;
+    color: #888;
+    display: inline-block;
+    transition: all .3s ease;
+}
+.jt-wx{
+    right: 2px; 
+}
+.jt-xz{
+    right: 9px;
+}
 .heade-djs{
     float: left;
     line-height: 40px;
@@ -86,13 +105,14 @@ export default {
     color: #f00;
 }
 .head-wx{
-    cursor: pointer;
+    cursor: pointer;  
 }
 .liright{
     float: left;
     border-right:1px solid #eee;
     padding:0px 15px; 
     position: relative;
+    cursor: pointer;
 }
 .ds_header {
     position: relative;
@@ -131,11 +151,6 @@ export default {
 .header_jpk a:hover{
     text-decoration: underline;
 }
-.jt-xz{
-    left: -5px;
-    top:12px;
-}
-
 .header_jp1 {
     color: #999;
     height: 40px;
@@ -177,10 +192,6 @@ export default {
     left: -3px;
     z-index: 1;
 }
-.jt-wx{
-    left: 1px;
-    top: 12px;
-}
 .ds_header-top li:last-child {
     display: block;
     height: 100%;
@@ -215,7 +226,7 @@ export default {
     color: #999;
     line-height: 40px;
     font-size: 14px;
-    padding-left:50px;
+    padding-left:39px;
     text-align: center;
 }
 

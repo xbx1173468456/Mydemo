@@ -76,7 +76,7 @@ export default {
   margin-bottom:15px; 
   color: #888;
 }
-.ds_cx ul {
+.ds_cx{
     display: flex;
     flex-flow: column nowrap;
     background: #fff;

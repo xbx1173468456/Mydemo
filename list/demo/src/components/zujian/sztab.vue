@@ -14,16 +14,10 @@ export default {
     }
   },
   created(){
-    // this.navclass();
-    // console.log(this.item)
+
   },
   methods:{
-    // navclass(){
-    //   var url="http://127.0.0.1:3000/navsznl";
-    //   this.axios.get(url).then(result=>{
-    //     this.list=result.data.data;
-    //   })
-    // },
+ 
   }
 }
 </script>

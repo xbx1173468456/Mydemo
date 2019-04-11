@@ -2,7 +2,9 @@
   <div class="ds_lb">
     <ul class="lb-tu">
       <li>
-        <a href="javascript:;"><img src="http://127.0.0.1:3000/img/8.jpg" alt=""></a>
+        <router-link to="/Teaches">
+          <img src="http://127.0.0.1:3000/img/8.jpg" />
+        </router-link>
       </li>
     </ul>
     <div class="ds-wrap_xl">
