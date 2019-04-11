@@ -3,18 +3,19 @@
     <div class="ds-nav clear">
         <a class="nav-bar nav-shou" href="javascript:">首页</a>
         <div @mouseenter="jump1" @mouseleave="jump2" class="nav-bar">
-            <a class="nav-size" href="javascript:;">优氏资源</a>
+            <a class="nav-size nav-icon" href="javascript:;">优氏资源
             <i class="iconfont icon-jiantoudown jt-dk"></i>
+            </a>
            <div v-show="kc" class="ds_nav-kc">
-                <!-- <navtab/> -->
                 <div class="nav-kc">
                     <sztab v-for="(item,i) of this.class" :key="i" :item="item"/>
                </div> 
            </div> 
         </div>
         <div @mouseenter="jump3" @mouseleave="jump4" class="nav-bar">
-            <a class="nav-size" href="javascript:;">优氏课程</a>
+            <a class="nav-size nav-icon" href="javascript:;">优氏课程
             <i class="iconfont icon-jiantoudown jt-dk"></i>
+            </a>
            <div v-show="sz" class="ds_nav-kc">
                <div class="nav-kc">
                     <sztab v-for="(item,i) of this.list" :key="i" :item="item"/>
@@ -81,6 +82,12 @@ export default {
 }
 </script>
 <style>
+.nav-icon:hover>i{
+  transform: rotate(-180deg);
+}
+.nav-icon>i{
+  transition: all .3s ease;
+}
 .nav-kc{
   width: 1200px;
   display: flex;
@@ -102,16 +109,19 @@ export default {
   float: right;
   margin-left: 30px;
 }
+.nav-bar>a{
+  position: relative;
+}
 .jt-dk{
-position: relative;
-top: 1px;
-left: -30px;
+position: absolute;
+top: 0px;
+right:11px;
 }
 .nav-size:hover{
   color: #5291ef;
 }
 .nav-size{
-  padding:0px 27px;
+  padding:0px 26px;
   font-size: 16px;
   color: #000;
   line-height: 40px;
