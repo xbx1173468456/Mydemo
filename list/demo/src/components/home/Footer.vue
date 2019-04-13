@@ -240,8 +240,11 @@ export default {
     margin: 0px 25px;
     justify-content: center;
 }
-.footer-down5>li:hover {
+.footer-down5>li:hover{
     border-color:#5291ef;
+}
+.footer-down5>li:hover a {
+    color: #5291ef;
 }
 .footer-down5 a {
     font-size: 12px;

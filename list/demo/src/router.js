@@ -11,6 +11,7 @@ import Reg from './components/home/Reg.vue'
 import Mydemo from './components/Demo/Mydemo.vue'
 import Heade from './components/Demo/Heade.vue'
 import Teaches from './components/teacher/Teaches.vue'
+import Sousuo from './components/Demo/Sousuo.vue'
 
 Vue.use(Router)
 
@@ -19,6 +20,7 @@ export default new Router({
     {path:'/',component:Mydemo,children:[
       {path:'/',component:Heade},
     ]},
+    {path:'/Sousuo',component:Sousuo},
     {path:'/Teaches',component:Teaches},
     {path:'/Reg',component:Reg},
     {path:'/Login',component:Login},
