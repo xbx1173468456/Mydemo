@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.13.1",
     "session-store": "0.0.6",
     "vue": "^2.6.6",
     "vue-router": "^3.0.2",
